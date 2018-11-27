@@ -1,0 +1,73 @@
+.SendMsg {
+  position: fixed;
+  bottom: 0%;
+}
+.Card {
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+  margin: 7%;
+  align-content: center;
+
+  border-radius: 15px 50px;
+  max-width: 450px;
+  background-color: white;
+}
+.Avatar {
+  height: 60px;
+  width: 60px;
+  background-color: #bbb;
+  border-radius: 50%;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+}
+.User {
+  margin-top: 50px;
+
+  vertical-align: -webkit-baseline-middle;
+  font-size: 15px;
+  width: 100px;
+  height: 20px;
+}
+.Time {
+  margin-top: 50px;
+  font-size: 10px;
+
+  bottom: 0%;
+}
+.Text {
+  padding: 11%;
+  text-align: center;
+}
+.Card2 {
+  padding: 10px;
+}
+.SendMsgCard {
+  position: fixed;
+  left: 50%;
+}
+test {
+  width: 200px;
+  display: inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  margin: 0px auto;
+  border: 1px red solid;
+}
+.Rel {
+  position: fixed;
+  bottom: 100px;
+  z-index: 323232;
+  right: 148px;
+}
+.Reli {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+.Reliy {
+  bottom: 50px;
+  right: 50px;
+  position: fixed;
+}
+.k {
+  margin-top: 5%;
+  float: left;
+}
