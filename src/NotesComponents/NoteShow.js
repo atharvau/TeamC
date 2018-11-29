@@ -10,6 +10,18 @@ import Info from "@material-ui/icons/Info";
 import Collapse from "@material-ui/core/Collapse";
 import { withStyles } from "@material-ui/core/styles";
 import ClassesShrthand from "./Not";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
+import red from "@material-ui/core/colors/red";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import classnames from "classnames";
 
 import "./No.css";
 
@@ -58,19 +70,28 @@ class NoteShow extends Component {
   }
   render() {
     return (
-      <div className="NN">
+      <div>
         <List>
           {this.state.Notes.map(Notes => {
             return (
-              <ListItem dense button>
-                <Checkbox />
-                <ListItemText primary={Notes.Note} secondary={Notes.uid} />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Info">
-                    <Collapse>Sss</Collapse>
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
+              <Card style={{ minWidth: 380 }}>
+                <CardHeader
+                  avatar={<Avatar aria-label="Recipe">R</Avatar>}
+                  action={
+                    <IconButton>
+                      <MoreVertIcon />
+                    </IconButton>
+                  }
+                  title={Notes.uid}
+                  subheader={Notes.timestamp}
+                />
+
+                <CardContent>
+                  <Typography variant="h6" gutterBottom>
+                    {Notes.Note}{" "}
+                  </Typography>
+                </CardContent>
+              </Card>
             );
           })}
         </List>

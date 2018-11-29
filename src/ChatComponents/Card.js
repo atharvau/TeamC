@@ -55,7 +55,7 @@ class RecipeReviewCard extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className="Card2">
+      <div >
         <Card className={classes.card}>
           <CardHeader
             avatar={

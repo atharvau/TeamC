@@ -3,7 +3,8 @@ import fire from "../Fire";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
-import { List } from "@material-ui/core";
+import List from "@material-ui/core/List";
+import Paper from "@material-ui/core/Paper";
 class ProfilesShow extends Component {
   state = { profiles: null };
 
@@ -12,7 +13,7 @@ class ProfilesShow extends Component {
     fire
       .database()
       .ref()
-      .child("Profiles")
+      .child("Profile")
       .on("child_added", da => {
         a.push({
           username: da.child("username").node_.value_,
@@ -29,7 +30,9 @@ class ProfilesShow extends Component {
   render() {
     return (
       <div>
+        {" "}
         <List>
+          {console.log("At")}
           {this.state.profiles.map(profiles => {
             return (
               <ListItem button>

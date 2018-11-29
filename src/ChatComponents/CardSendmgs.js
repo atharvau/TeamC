@@ -74,6 +74,25 @@ var onClick = () => {
         .push(key);
     }
   }
+
+  let TodoModel = [];
+
+  if (Todos != null) var f = Todos.length;
+  if (f > 0) {
+    for (let ind = 0; ind < f; ind++) {
+      TodoModel.push({
+        todo: Todos[ind],
+        timestamp: qaa.timestamp,
+        uid: qaa.uid,
+        key: key
+      });
+      fire
+        .database()
+        .ref()
+        .child("Todo")
+        .push(TodoModel[ind]);
+    }
+  }
 };
 
 const fu = e => {

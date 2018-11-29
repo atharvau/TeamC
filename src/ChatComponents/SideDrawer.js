@@ -19,15 +19,18 @@ import MailIcon from "@material-ui/icons/Mail";
 import ChatShow from "./ChatShow";
 import Fab from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-
+import Grid from "@material-ui/core/Grid";
 import { Switch } from "react-router";
 import { Route } from "react-router-dom";
+
+import Paper from "@material-ui/core/Paper";
 
 import CardSendmgs from "./CardSendmgs";
 import "./Chat.css";
 import Profiles from "./Profiles";
 import Notes from "../NotesComponents/Notes";
 import NoteShow from "../NotesComponents/NoteShow";
+import ProfilesShow from "./ProfilesShow";
 
 const drawerWidth = 240;
 const drawerWidthi = "/" + 240;
@@ -93,14 +96,22 @@ class SideDrawer extends React.Component {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {[
+            { name: "Home", url: "/" },
+            { name: "Notes", url: "/240" },
+            { name: "Home", url: "/" }
+          ].map((text, index) => {
+            return (
+              <a href={text.url}>
+                <ListItem button key={text.name}>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text.name} />
+                </ListItem>
+              </a>
+            );
+          })}
         </List>
         <Divider />
         <List>
@@ -123,22 +134,6 @@ class SideDrawer extends React.Component {
         <nav className={classes.drawer}>
           {/* The implementation can be swap with js to avoid SEO duplication of links. */}
 
-          <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={this.handleDrawerToggle}
-                className={classes.menuButton}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" color="inherit" noWrap>
-                Responsive drawer
-              </Typography>
-            </Toolbar>
-          </AppBar>
-
           <Hidden smUp implementation="css">
             <Drawer
               container={this.props.container}
@@ -156,6 +151,21 @@ class SideDrawer extends React.Component {
               {drawer}
             </Drawer>
           </Hidden>
+          <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerToggle}
+                className={classes.menuButton}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" color="inherit" noWrap>
+                Responsive drawer
+              </Typography>
+            </Toolbar>
+          </AppBar>
           <Hidden xsDown implementation="css">
             <Drawer
               classes={{
@@ -168,32 +178,37 @@ class SideDrawer extends React.Component {
             </Drawer>
           </Hidden>
         </nav>
-        <main className={classes.content}>
-          <div className="k">
-            <Switch>
-              <Route exact path="/" component={ChatShow} />
-              <Route path={drawerWidthi} component={NoteShow} />
-            </Switch>
-            {console.log("SA")}
-          </div>
-          <div className="ak">
-            <Hidden xsDown>
-              <Profiles />
-            </Hidden>
-          </div>
-          <div className="Rel">
-            <div className="Reliy"> {this.as()} </div>
-            <div className="Reli">
-              <Fab
-                onClick={this.handlecard}
-                color="secondary"
-                aria-label="Edit"
-              >
-                <Icon>edit_icon</Icon>
-              </Fab>
-            </div>
-          </div>
-        </main>
+        <div className="ll">
+          <main className={classes.content}>
+            <Grid container>
+              <Grid item xs={9}>
+                <div>
+                  <Switch>
+                    <Route exact path="/" component={ChatShow} />
+                    <Route path={drawerWidthi} component={NoteShow} />
+                  </Switch>{" "}
+                </div>
+              </Grid>
+              <Grid item xs={3}>
+                <Hidden only="xs">
+                  <ProfilesShow />
+                </Hidden>
+              </Grid>
+            </Grid>
+            <div className="Rel">
+              <div className="Reliy"> {this.as()} </div>
+              <div className="Reli">
+                <Fab
+                  onClick={this.handlecard}
+                  color="secondary"
+                  aria-label="Edit"
+                >
+                  <Icon>edit_icon</Icon>
+                </Fab>
+              </div>
+            </div>{" "}
+          </main>
+        </div>
       </div>
     );
   }

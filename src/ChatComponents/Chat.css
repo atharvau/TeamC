@@ -37,7 +37,6 @@
   text-align: center;
 }
 .Card2 {
-  padding: 10px;
 }
 .SendMsgCard {
   position: fixed;
@@ -82,4 +81,12 @@ test {
   margin-top: 50px;
   position: fixed;
   right: 0px;
+}
+
+.l {
+  background-color: black;
+}
+.ll {
+  width: 100%;
+  margin-top: 63px;
 }

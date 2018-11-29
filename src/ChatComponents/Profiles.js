@@ -26,7 +26,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3
+    padding: 0
   },
   toolbar: theme.mixins.toolbar
 });
@@ -36,25 +36,8 @@ function Profiles(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Clipped drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        anchor="right"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.toolbar} />
-        <ProfilesShow />
-      </Drawer>
+      <div className={classes.toolbar} />
+      <ProfilesShow />
     </div>
   );
 }
