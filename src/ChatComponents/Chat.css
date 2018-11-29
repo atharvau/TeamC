@@ -68,6 +68,18 @@ test {
   position: fixed;
 }
 .k {
-  margin-top: 5%;
-  float: left;
+  width: 100%;
+}
+.Profiles {
+  position: fixed;
+  z-index: 40;
+  right: 0;
+  top: 0%;
+}
+.ak {
+  background-color: blueviolet;
+  width: 25%;
+  margin-top: 50px;
+  position: fixed;
+  right: 0px;
 }

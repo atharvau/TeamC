@@ -20,11 +20,17 @@ import ChatShow from "./ChatShow";
 import Fab from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 
+import { Switch } from "react-router";
+import { Route } from "react-router-dom";
+
 import CardSendmgs from "./CardSendmgs";
 import "./Chat.css";
-import Button from "@material-ui/core/Button";
-import SendMsg from "./SendMsg";
+import Profiles from "./Profiles";
+import Notes from "../NotesComponents/Notes";
+import NoteShow from "../NotesComponents/NoteShow";
+
 const drawerWidth = 240;
+const drawerWidthi = "/" + 240;
 
 const styles = theme => ({
   root: {
@@ -54,7 +60,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3
+    padding: 0
   }
 });
 
@@ -72,11 +78,10 @@ class SideDrawer extends React.Component {
     this.setState({
       Card: !this.state.Card
     });
-    console.log(this.state);
   };
 
   as() {
-    if (this.state.Card == true) {
+    if (this.state.Card === true) {
       return <CardSendmgs uid={this.props.uid} />;
     }
   }
@@ -114,23 +119,26 @@ class SideDrawer extends React.Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerToggle}
-              className={classes.menuButton}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              Responsive drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
+
         <nav className={classes.drawer}>
           {/* The implementation can be swap with js to avoid SEO duplication of links. */}
+
+          <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerToggle}
+                className={classes.menuButton}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" color="inherit" noWrap>
+                Responsive drawer
+              </Typography>
+            </Toolbar>
+          </AppBar>
+
           <Hidden smUp implementation="css">
             <Drawer
               container={this.props.container}
@@ -162,8 +170,16 @@ class SideDrawer extends React.Component {
         </nav>
         <main className={classes.content}>
           <div className="k">
-            {" "}
-            <ChatShow />
+            <Switch>
+              <Route exact path="/" component={ChatShow} />
+              <Route path={drawerWidthi} component={NoteShow} />
+            </Switch>
+            {console.log("SA")}
+          </div>
+          <div className="ak">
+            <Hidden xsDown>
+              <Profiles />
+            </Hidden>
           </div>
           <div className="Rel">
             <div className="Reliy"> {this.as()} </div>

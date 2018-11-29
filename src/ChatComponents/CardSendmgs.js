@@ -34,6 +34,7 @@ var qaa = {
 var Notes = [];
 var Inbox = [];
 var key = {};
+var Todos = {};
 
 var onClick = () => {
   key = fire
@@ -41,8 +42,6 @@ var onClick = () => {
     .ref()
     .child("Msg")
     .push(qaa).key;
-
-  console.log(key);
 
   if (Notes != null) var n = Notes.length;
 
@@ -52,26 +51,27 @@ var onClick = () => {
       NotesModel.push({
         Note: Notes[index],
         timestamp: qaa.timestamp,
-        uid: qaa.uid
+        uid: qaa.uid,
+        key: key
       });
+
       fire
         .database()
         .ref()
         .child("Notes")
         .push(NotesModel[index]);
     }
+  }
 
-    if (Inbox != null) var n2 = Notes.length;
-
-    if (n2 > 0) {
-      for (let ind = 0; ind < n2; ind++) {
-        fire
-          .database()
-          .ref()
-          .child("Inbox")
-          .child(Inbox[ind])
-          .push(key);
-      }
+  if (Inbox != null) var g = Inbox.length;
+  if (g > 0) {
+    for (let index2 = 0; index2 < g; index2++) {
+      fire
+        .database()
+        .ref()
+        .child("Inbox")
+        .child(Inbox[index2])
+        .push(key);
     }
   }
 };
@@ -80,17 +80,46 @@ const fu = e => {
   var date = new Date();
   var timestamp = date.getTime();
 
-  var re = /\#\w+/gim;
-
+  var re = /#\w+/gim;
   var found = e.target.value.match(re);
 
-  var as = /\@\w+/gim;
-  var founda = e.target.value.match(as);
+  var aba = /@\w+/gim;
+  var founda = e.target.value.match(aba);
+
+  var Todo = /\$\w+/gim;
+  var TodoF = e.target.value.match(Todo);
 
   Notes = found;
   Inbox = founda;
+  Todos = TodoF;
 
-  console.log(Notes);
+  if (Inbox != null) {
+    for (let index3 = 0; index3 < Inbox.length; index3++) {
+      var c = Inbox[index3];
+
+      Inbox[index3] = c.substring(1, c.length);
+      console.log(Inbox[index3]);
+    }
+  }
+
+  if (Notes != null) {
+    for (let index4 = 0; index4 < Notes.length; index4++) {
+      var d = Notes[index4];
+
+      Notes[index4] = d.substring(1, d.length);
+      console.log(Notes[index4]);
+    }
+  }
+
+  if (TodoF != null) {
+    for (let index5 = 0; index5 < TodoF.length; index5++) {
+      var f = Todos[index5];
+      Todos[index5] = f.substring(1, f.length);
+
+      console.log(Todos[index5]);
+    }
+  }
+
   qaa = {
     uid: qaa.uid,
     msg: e.target.value,
@@ -99,7 +128,6 @@ const fu = e => {
 };
 function CardSendmgs(props) {
   const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
   qaa = {
     uid: props.uid
   };

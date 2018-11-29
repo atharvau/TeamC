@@ -8,9 +8,17 @@
     "firebase": "^5.5.9",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
+    "react-autocomplete": "^1.8.1",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-headroom": "^2.2.4",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "react-scroll-to": "^2.0.1",
+    "react-scroll-to-bottom": "^1.2.0",
+    "react-scroll-to-component": "^1.0.2",
+    "react-scrollable-feed": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

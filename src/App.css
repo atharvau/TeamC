@@ -17,6 +17,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.Scroll {
+  scroll-snap-coordinate: 200;
+}
 
 .App-link {
   color: #61dafb;

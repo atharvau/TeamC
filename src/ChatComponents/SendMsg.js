@@ -25,26 +25,7 @@ class SendMsg extends Component {
   };
 
   render() {
-    return (
-      <div className="SendMsg">
-        <div class="row">
-          <div class="col s10">
-            <input type="text" onChange={this.onChange} />
-          </div>
-          <div class="col s2">
-            <button
-              class="btn waves-effect waves-light"
-              type="submit"
-              name="action"
-              onClick={this.onClick}
-            >
-              Submit
-              <i class="material-icons right">send</i>
-            </button>
-          </div>
-        </div>
-      </div>
-    );
+    return <div className="SendMsg">{}</div>;
   }
 }
 

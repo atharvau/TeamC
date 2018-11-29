@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import fire from "../Fire";
-import ChatHead from "./ChatHead";
 import Card from "./Card";
 
 class ChatShow extends Component {
   state = {
-    mess: []
+    mess: [],
+    revmess: []
   };
 
   componentWillMount() {
@@ -22,27 +22,35 @@ class ChatShow extends Component {
         });
         this.setState({ mess: a });
       });
+
+    this.setState({
+      mess: this.state.mess,
+      revmess: this.state.mess.reverse
+    });
   }
   render() {
     return (
       <div>
-        {this.state.mess.map(mess => {
-          var d = new Date(mess.timestamp);
-          var s =
-            d.getHours() +
-            ":" +
-            d.getMinutes() +
-            "    " +
-            d.getDate() +
-            "/" +
-            d.getMonth();
+        {this.state.mess
+          .slice(0)
+          .reverse()
+          .map(mess => {
+            var d = new Date(mess.timestamp);
+            var s =
+              d.getHours() +
+              ":" +
+              d.getMinutes() +
+              "    " +
+              d.getDate() +
+              "/" +
+              d.getMonth();
 
-          return (
-            <div>
-              <Card uid={mess.uid} msg={mess.msg} timestamp={s} />
-            </div>
-          );
-        })}
+            return (
+              <div>
+                <Card uid={mess.uid} msg={mess.msg} timestamp={s} />
+              </div>
+            );
+          })}
       </div>
     );
   }
