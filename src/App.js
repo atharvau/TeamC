@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import "./App.css";
+
 import SideDrawer from "./ChatComponents/SideDrawer";
-import ProfilePage from "./TodoComponent/ProfilePage";
+import Demo from "./Demo";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <ProfilePage />
-
-        {/* <div className="Scroll">
+        <div className="Scroll">
           <SideDrawer uid="ss" />
-        </div> */}
+        </div>
       </div>
     );
   }

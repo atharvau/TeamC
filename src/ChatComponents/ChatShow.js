@@ -18,7 +18,8 @@ class ChatShow extends Component {
         a.push({
           msg: da.child("msg").node_.value_,
           uid: da.child("uid").node_.value_,
-          timestamp: da.child("timestamp").node_.value_
+          timestamp: da.child("timestamp").node_.value_,
+          pic: da.child("pic").node_.value_
         });
         this.setState({ mess: a });
       });
@@ -47,7 +48,12 @@ class ChatShow extends Component {
 
             return (
               <div>
-                <Card uid={mess.uid} msg={mess.msg} timestamp={s} />
+                <Card
+                  uid={mess.uid}
+                  msg={mess.msg}
+                  pic={mess.pic}
+                  timestamp={s}
+                />
               </div>
             );
           })}

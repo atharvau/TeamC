@@ -8,6 +8,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Input from "@material-ui/core/Input";
 import fire from "../Fire";
+import ProfilePage from "../TodoComponent/ProfilePage";
+
 const styles = {
   card: {
     minWidth: 300
@@ -81,10 +83,12 @@ var onClick = () => {
   if (f > 0) {
     for (let ind = 0; ind < f; ind++) {
       TodoModel.push({
-        todo: Todos[ind],
-        timestamp: qaa.timestamp,
-        uid: qaa.uid,
-        key: key
+        info: {
+          todo: Todos[ind],
+          timestamp: qaa.timestamp,
+          uid: qaa.uid,
+          key: key
+        }
       });
       fire
         .database()
@@ -117,7 +121,6 @@ const fu = e => {
       var c = Inbox[index3];
 
       Inbox[index3] = c.substring(1, c.length);
-      console.log(Inbox[index3]);
     }
   }
 
@@ -126,7 +129,6 @@ const fu = e => {
       var d = Notes[index4];
 
       Notes[index4] = d.substring(1, d.length);
-      console.log(Notes[index4]);
     }
   }
 
@@ -134,8 +136,6 @@ const fu = e => {
     for (let index5 = 0; index5 < TodoF.length; index5++) {
       var f = Todos[index5];
       Todos[index5] = f.substring(1, f.length);
-
-      console.log(Todos[index5]);
     }
   }
 
@@ -169,6 +169,7 @@ function CardSendmgs(props) {
           <Button onClick={onClick} size="small">
             Send
           </Button>
+          <ProfilePage />
         </CardActions>
       </Card>
     </div>

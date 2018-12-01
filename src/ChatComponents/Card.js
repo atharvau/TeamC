@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import classnames from "classnames";
 import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
@@ -14,7 +15,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-
+import CardMedia from "@material-ui/core/CardMedia";
 const styles = theme => ({
   card: {
     minWidth: 400
@@ -55,7 +56,17 @@ class RecipeReviewCard extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div >
+      <div
+        style={{
+          paddingTop: 20,
+          paddingBottom: 20,
+          paddingLeft: 10,
+          paddingRight: 10
+        }}
+      >
+        {console.log(classes.card)}
+        {console.log(classes.avatar)}
+        {console.log(classes.actions)}
         <Card className={classes.card}>
           <CardHeader
             avatar={
@@ -71,6 +82,12 @@ class RecipeReviewCard extends React.Component {
             title={this.props.uid}
             subheader={this.props.timestamp}
           />
+          <CardMedia
+            className="RecipeReviewCard-media-298"
+            image={this.props.pic}
+            title="Paella dish"
+          />
+          {console.log(classes.button)}
 
           <CardContent>
             <Typography component="p">{this.props.msg}</Typography>

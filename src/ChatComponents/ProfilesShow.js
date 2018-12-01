@@ -4,7 +4,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import List from "@material-ui/core/List";
-import Paper from "@material-ui/core/Paper";
 class ProfilesShow extends Component {
   state = { profiles: null };
 
@@ -20,7 +19,6 @@ class ProfilesShow extends Component {
           name: da.child("name").node_.value_,
           profilepicture: da.child("profilepicture").node_.value_
         });
-        console.log(da);
         this.setState({ profiles: a });
       });
 
@@ -32,7 +30,6 @@ class ProfilesShow extends Component {
       <div>
         {" "}
         <List>
-          {console.log("At")}
           {this.state.profiles.map(profiles => {
             return (
               <ListItem button>

@@ -23,17 +23,14 @@ import Grid from "@material-ui/core/Grid";
 import { Switch } from "react-router";
 import { Route } from "react-router-dom";
 
-import Paper from "@material-ui/core/Paper";
-
-import CardSendmgs from "./CardSendmgs";
 import "./Chat.css";
-import Profiles from "./Profiles";
-import Notes from "../NotesComponents/Notes";
 import NoteShow from "../NotesComponents/NoteShow";
 import ProfilesShow from "./ProfilesShow";
+import TodoShow from "../TodoComponent/TodoShow";
+import CardSendPic from "./CardSendPic";
+import PolShow from "../Polls/PolShow";
 
 const drawerWidth = 240;
-const drawerWidthi = "/" + 240;
 
 const styles = theme => ({
   root: {
@@ -85,7 +82,7 @@ class SideDrawer extends React.Component {
 
   as() {
     if (this.state.Card === true) {
-      return <CardSendmgs uid={this.props.uid} />;
+      return <CardSendPic uid={this.props.uid} />;
     }
   }
   render() {
@@ -98,8 +95,8 @@ class SideDrawer extends React.Component {
         <List>
           {[
             { name: "Home", url: "/" },
-            { name: "Notes", url: "/240" },
-            { name: "Home", url: "/" }
+            { name: "Notes", url: "/notes" },
+            { name: "Todo", url: "/todo" }
           ].map((text, index) => {
             return (
               <a href={text.url}>
@@ -175,7 +172,8 @@ class SideDrawer extends React.Component {
               open
             >
               {drawer}
-            </Drawer>
+            </Drawer>{" "}
+            {console.log(classes.button)}
           </Hidden>
         </nav>
         <div className="ll">
@@ -185,8 +183,10 @@ class SideDrawer extends React.Component {
                 <div>
                   <Switch>
                     <Route exact path="/" component={ChatShow} />
-                    <Route path={drawerWidthi} component={NoteShow} />
-                  </Switch>{" "}
+                    <Route path="/notes" component={NoteShow} />
+                    <Route path="/todo" component={TodoShow} />
+                    <Route path="/poll" component={PolShow} />
+                  </Switch>
                 </div>
               </Grid>
               <Grid item xs={3}>

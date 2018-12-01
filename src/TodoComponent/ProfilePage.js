@@ -32,19 +32,11 @@ class ProfilePage extends Component {
   render() {
     return (
       <div>
-        <form>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={this.state.username}
-            name="username"
-            onChange={this.handleChangeUsername}
-          />
-          <label>Avatar:</label>
-          {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-          {this.state.avatarURL && <img src={this.state.avatarURL} />}
+        {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+        {this.state.avatarURL}
+        <div style={{ marginLeft: 20 }}>
           <FileUploader
-            accept="image/*"
+            accept="Posts/*"
             name="avatar"
             randomizeFilename
             storageRef={firebase.storage().ref("images")}
@@ -53,8 +45,7 @@ class ProfilePage extends Component {
             onUploadSuccess={this.handleUploadSuccess}
             onProgress={this.handleProgress}
           />
-          {console.log(this.state.avatarURL)}
-        </form>
+        </div>
       </div>
     );
   }
