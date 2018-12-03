@@ -96,7 +96,11 @@ class SideDrawer extends React.Component {
           {[
             { name: "Home", url: "/" },
             { name: "Notes", url: "/notes" },
-            { name: "Todo", url: "/todo" }
+            { name: "Todo", url: "/todo" },
+            {
+              name: "Poll",
+              url: "/poll"
+            }
           ].map((text, index) => {
             return (
               <a href={text.url}>
@@ -111,16 +115,6 @@ class SideDrawer extends React.Component {
           })}
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </div>
     );
 
@@ -182,16 +176,18 @@ class SideDrawer extends React.Component {
               <Grid item xs={9}>
                 <div>
                   <Switch>
-                    <Route exact path="/" component={ChatShow} />
-                    <Route path="/notes" component={NoteShow} />
-                    <Route path="/todo" component={TodoShow} />
-                    <Route path="/poll" component={PolShow} />
+                    <Route exact path="/dashboard/home" component={ChatShow} />
+                    <Route path="/dashboard/note" component={NoteShow} />
+                    <Route path="/dashboard/todo" component={TodoShow} />
+                    <Route path="/dashboard/poll" component={PolShow} />
                   </Switch>
                 </div>
               </Grid>
               <Grid item xs={3}>
                 <Hidden only="xs">
-                  <ProfilesShow />
+                  <div style={{ position: "fixed" }}>
+                    <ProfilesShow />
+                  </div>
                 </Hidden>
               </Grid>
             </Grid>

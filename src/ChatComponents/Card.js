@@ -16,6 +16,9 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import CardMedia from "@material-ui/core/CardMedia";
+
+import "./Chat.css";
+
 const styles = theme => ({
   card: {
     minWidth: 400
@@ -53,6 +56,14 @@ class RecipeReviewCard extends React.Component {
   };
 
   render() {
+    function UserGreeting(p) {
+      if (p != null) {
+        return (
+          <CardMedia className={classes.media} image={p} title="Paella dish" />
+        );
+      } else return null;
+    }
+
     const { classes } = this.props;
 
     return (
@@ -64,14 +75,11 @@ class RecipeReviewCard extends React.Component {
           paddingRight: 10
         }}
       >
-        {console.log(classes.card)}
-        {console.log(classes.avatar)}
-        {console.log(classes.actions)}
         <Card className={classes.card}>
           <CardHeader
             avatar={
               <Avatar aria-label="Recipe" className={classes.avatar}>
-                R
+                {this.props.uid.substring(0, 1)}
               </Avatar>
             }
             action={
@@ -82,34 +90,13 @@ class RecipeReviewCard extends React.Component {
             title={this.props.uid}
             subheader={this.props.timestamp}
           />
-          <CardMedia
-            className="RecipeReviewCard-media-298"
-            image={this.props.pic}
-            title="Paella dish"
-          />
-          {console.log(classes.button)}
-
+          {UserGreeting(this.props.pic)}
           <CardContent>
-            <Typography component="p">{this.props.msg}</Typography>
+            <Typography variant="h6" gutterBottom component="p">
+              {this.props.msg}
+            </Typography>
           </CardContent>
-          <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="Share">
-              <ShareIcon />
-            </IconButton>
-            <IconButton
-              className={classnames(classes.expand, {
-                [classes.expandOpen]: this.state.expanded
-              })}
-              onClick={this.handleExpandClick}
-              aria-expanded={this.state.expanded}
-              aria-label="Show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
+          <CardActions className={classes.actions} disableActionSpacing />
         </Card>
       </div>
     );

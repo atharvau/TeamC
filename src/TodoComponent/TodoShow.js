@@ -40,12 +40,11 @@ class TodoShow extends Component {
           .child(da.key)
           .child("Completed")
           .on("child_added", d => {
-            i++;
-            b.push(d.val());
             if (d.val() === "username") {
               g = true;
             }
           });
+
         var ll = {
           Info: {
             todo: da.val().info.todo,
@@ -63,99 +62,61 @@ class TodoShow extends Component {
 
         this.setState({ Todo: jj });
       });
-
-    fire
-      .database()
-      .ref()
-      .child("Todo")
-      .on("child_changed", da => {
-        var b = [];
-
-        var g = false;
-        fire
-          .database()
-          .ref()
-          .child("Todo")
-          .child(da.key)
-          .child("Completed")
-          .on("child_changed", d => {
-            b.push(d.val());
-            if (d.val() === "username") {
-              g = true;
-            }
-          });
-        var ll = {
-          Info: {
-            todo: da.val().info.todo,
-            timestamp: da.val().info.timestamp,
-            key: da.val().info.key,
-            uid: da.val().info.uid,
-            ref: da.key,
-            check: g
-          },
-          Completed: b
-        };
-
-        jj.push(ll);
-
-        this.setState({ Todo: jj });
-      });
   }
 
-  s(r) {
-    fire
-      .database()
-      .ref()
-      .child("Todo")
-      .child(r)
-      .child("Completed")
-      .child("uid")
-      .set("username");
+  jk() {
+    console.log("AA");
   }
 
+  s(r, c) {
+    if (c === false) {
+      fire
+        .database()
+        .ref()
+        .child("Todo")
+        .child(r)
+        .child("Completed")
+        .child("uid")
+        .set("username")
+        .then(() => {
+          window.location.reload();
+        });
+    } else {
+      fire
+        .database()
+        .ref()
+        .child("Todo")
+        .child(r)
+        .child("Completed")
+        .child("uid")
+        .remove()
+        .then(() => {
+          window.location.reload();
+        });
+    }
+  }
   render() {
     return (
-      <div>
+      <div style={{ padding: 20 }}>
         {this.state.Todo.map(Todo => {
           return (
             <Card key={Todo.Info.ref}>
               <Grid container>
                 <Grid item xs={1}>
-                  <Checkbox />
+                  <Checkbox
+                    checked={Todo.Info.check}
+                    onClick={this.s.bind(this, Todo.Info.ref, Todo.Info.check)}
+                  />
                 </Grid>
                 <Grid item xs={10}>
-                  <CardHeader
-                    title={Todo.Info.uid}
-                    subheader={Todo.Info.timestamp}
-                  />
-
                   <CardContent>
-                    <Typography variant="h6" gutterBottom>
+                    <Typography align="centre" variant="h6" gutterBottom>
                       {Todo.Info.todo}
                     </Typography>
-                    <Collapse
-                      in={this.state.expanded}
-                      timeout="auto"
-                      unmountOnExit
-                    >
-                      <List>
-                        {Todo.Completed.map(text => {
-                          return <ListItemText primary={text} />;
-                        })}
-                      </List>
-                    </Collapse>
                   </CardContent>
                 </Grid>
 
-                <Grid item xs={1}>
-                  <Fab
-                    variant="extended"
-                    aria-label="Delete"
-                    onClick={this.handleExpandClick}
-                  >
-                    <ExpandMoreIcon />
-                  </Fab>
-                </Grid>
+                <Grid item xs={1} />
               </Grid>
             </Card>
           );

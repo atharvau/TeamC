@@ -194,7 +194,7 @@ class CardSendPic extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ width: 400 }}>
         <Card className="CardSendmgs-card-318">
           <CardContent>
             <Typography
@@ -213,16 +213,18 @@ class CardSendPic extends Component {
           </CardActions>
 
           {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-          <FileUploader
-            accept="Posts/*"
-            name="avatar"
-            randomizeFilename
-            storageRef={firebase.storage().ref("images")}
-            onUploadStart={this.handleUploadStart}
-            onUploadError={this.handleUploadError}
-            onUploadSuccess={this.handleUploadSuccess}
-            onProgress={this.handleProgress}
-          />
+          <button>
+            <FileUploader
+              accept="Posts/*"
+              name="avatar"
+              randomizeFilename
+              storageRef={firebase.storage().ref("images")}
+              onUploadStart={this.handleUploadStart}
+              onUploadError={this.handleUploadError}
+              onUploadSuccess={this.handleUploadSuccess}
+              onProgress={this.handleProgress}
+            />
+          </button>
         </Card>
       </div>
     );
