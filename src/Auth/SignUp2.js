@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Redirect } from "react-router-dom";
 import fire from "../Fire";
+import { connect } from "react-redux";
 class SignUp2 extends Component {
   state = {
     name: null,
@@ -32,6 +33,8 @@ class SignUp2 extends Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password);
 
+    this.props.onTodoClick(fire.auth().currentUser);
+
     this.CHeck();
   };
 
@@ -48,6 +51,13 @@ class SignUp2 extends Component {
           .child("Profiles")
           .child(user.uid)
           .set(this.state);
+        fire
+          .database()
+          .ref()
+          .child("List")
+          .child(user.uid)
+          .set(this.state.username);
+
         window.alert("User IS Logged In");
         this.setState({ logged: true });
       }
@@ -115,4 +125,21 @@ class SignUp2 extends Component {
     );
   }
 }
-export default SignUp2;
+const mapStateToProps = state => {
+  console.log(state);
+  return state;
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onTodoClick: id => {
+      dispatch(toggleTodo(id));
+    }
+  };
+};
+function toggleTodo(index) {
+  return { type: "UID", payload: index };
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp2);

@@ -16,8 +16,10 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import CardMedia from "@material-ui/core/CardMedia";
-
+import "../A/Style.css";
+import Grid from "@material-ui/core/Grid";
 import "./Chat.css";
+import { Paper } from "@material-ui/core";
 
 const styles = theme => ({
   card: {
@@ -67,38 +69,30 @@ class RecipeReviewCard extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div
-        style={{
-          paddingTop: 20,
-          paddingBottom: 20,
-          paddingLeft: 10,
-          paddingRight: 10
-        }}
-      >
-        <Card className={classes.card}>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="Recipe" className={classes.avatar}>
-                {this.props.uid.substring(0, 1)}
-              </Avatar>
-            }
-            action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={this.props.uid}
-            subheader={this.props.timestamp}
-          />
-          {UserGreeting(this.props.pic)}
-          <CardContent>
-            <Typography variant="h6" gutterBottom component="p">
-              {this.props.msg}
-            </Typography>
-          </CardContent>
-          <CardActions className={classes.actions} disableActionSpacing />
-        </Card>
-      </div>
+      <li className="chat-item">
+        <div className="container">
+          <Grid alignContent="flex-start" container>
+            <Grid item xs={2}>
+              <div className="chat-img">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/workstation-de68a.appspot.com/o/eibgv7kctah62iddzywm.webp?alt=media&token=41c3c4b4-bc9c-4c62-8e9c-4971902f614d"
+                  style={{ height: 40, width: 40 }}
+                  alt="user"
+                />
+              </div>
+            </Grid>
+            <Grid item xs={10}>
+              <div className="container">
+                <h6 className="font-medium">{this.props.uid}</h6>
+                <div className="box bg-light-info">
+                  <div className="container">{this.props.msg}</div>{" "}
+                </div>
+              </div>
+              <div className="chat-time">{this.props.timestamp}</div>
+            </Grid>
+          </Grid>
+        </div>
+      </li>
     );
   }
 }

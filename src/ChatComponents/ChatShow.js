@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import fire from "../Fire";
 import Card from "./Card";
-
+import "../A/Style.css";
+import "./Chat.css";
+import CardSendPic from "./CardSendPic";
 class ChatShow extends Component {
   state = {
     mess: [],
@@ -32,31 +34,51 @@ class ChatShow extends Component {
   render() {
     return (
       <div>
-        {this.state.mess
-          .slice(0)
-          .reverse()
-          .map(mess => {
-            var d = new Date(mess.timestamp);
-            var s =
-              d.getHours() +
-              ":" +
-              d.getMinutes() +
-              "    " +
-              d.getDate() +
-              "/" +
-              d.getMonth();
+        <div className="col-lg-8">
+          <div className="card">
+            <div className="card-body">
+              <h4 className="card-title">Recent Chats</h4>
+              <div
+                className="chat-box scrollable "
+                style={{ height: "475px", webkitscrol: "auto" }}
+                data-ps-id="86ffbaf8-776f-0a99-e662-7f15e24d9a84"
+              >
+                <div class="smooth-scroll list-unstyled">
+                  {/*chat Row */}
+                  <ul className="chat-list">
+                    {/*chat Row */}{" "}
+                    {this.state.mess
+                      .slice(0)
+                      .reverse()
+                      .map(mess => {
+                        var d = new Date(mess.timestamp);
+                        var s =
+                          d.getHours() +
+                          ":" +
+                          d.getMinutes() +
+                          "    " +
+                          d.getDate() +
+                          "/" +
+                          d.getMonth();
 
-            return (
-              <div>
-                <Card
-                  uid={mess.uid}
-                  msg={mess.msg}
-                  pic={mess.pic}
-                  timestamp={s}
-                />
+                        return (
+                          <Card
+                            uid={mess.uid}
+                            msg={mess.msg}
+                            pic={mess.pic}
+                            timestamp={s}
+                          />
+                        );
+                      })}
+                  </ul>
+                </div>
               </div>
-            );
-          })}
+            </div>
+            <div class="card-body border-top">
+              <CardSendPic uid="hj" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

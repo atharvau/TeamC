@@ -90,6 +90,14 @@ var onClick = () => {
       .child("Poll")
       .push(Poll);
   }
+
+  fire
+    .database()
+    .ref()
+    .child("Notifications")
+    .child("HVJ4brpcPMQ13ayeQ2s4aRp3Jiy1")
+    .child("Home")
+    .set(true);
 };
 
 const fu = e => {
@@ -194,38 +202,29 @@ class CardSendPic extends Component {
 
   render() {
     return (
-      <div style={{ width: 400 }}>
-        <Card className="CardSendmgs-card-318">
-          <CardContent>
-            <Typography
-              className="CardSendmgs-title-320"
-              color="textSecondary"
-              gutterBottom
+      <div className="card-body border-top">
+        <div className="row">
+          <div className="col-9">
+            <div className="input-field m-t-0 m-b-0">
+              <input
+                onChange={fu}
+                type="text"
+                id="textarea1"
+                placeholder="Type and enter"
+                className="form-control
+                                    border-0"
+              />
+            </div>
+          </div>
+          <div className="col-3">
+            <a
+              className="btn-circle btn-lg btn-cyan float-right text-white"
+              onClick={onClick}
             >
-              New Messsage
-            </Typography>
-            <Input onChange={fu} multiline />
-          </CardContent>
-          <CardActions>
-            <Button onClick={onClick} size="small">
-              Send
-            </Button>
-          </CardActions>
-
-          {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-          <button>
-            <FileUploader
-              accept="Posts/*"
-              name="avatar"
-              randomizeFilename
-              storageRef={firebase.storage().ref("images")}
-              onUploadStart={this.handleUploadStart}
-              onUploadError={this.handleUploadError}
-              onUploadSuccess={this.handleUploadSuccess}
-              onProgress={this.handleProgress}
-            />
-          </button>
-        </Card>
+              <i className="fas fa-paper-plane" />
+            </a>
+          </div>
+        </div>
       </div>
     );
   }

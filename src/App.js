@@ -10,20 +10,14 @@ import Login from "./Auth/Login";
 import FinalTodo from "./ChatComponents/FinalTodo";
 
 import { Provider } from "unstated";
+import ReduxDemo from "./redux/ReduxDemo ";
+import Uikit from "./UIKIT/Uikit";
+import Uikit2 from "./UIKIT/Uikit2";
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Switch>
-          <Route exact path="/signup" component={SignUp2} />
-          <Route path="/dashboard" component={FinalChat} />
-          <Route path="/todo" component={FinalTodo} />
-          <Provider>
-            {" "}
-            <Route path="/login" component={Login} />
-          </Provider>
-          
-        </Switch>
+        <Login />
       </div>
     );
   }

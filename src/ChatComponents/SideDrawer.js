@@ -22,6 +22,7 @@ import Icon from "@material-ui/core/Icon";
 import Grid from "@material-ui/core/Grid";
 import { Switch } from "react-router";
 import { Route } from "react-router-dom";
+import Badge from "@material-ui/core/Badge";
 
 import "./Chat.css";
 import NoteShow from "../NotesComponents/NoteShow";
@@ -104,14 +105,17 @@ class SideDrawer extends React.Component {
           ].map((text, index) => {
             return (
               <a href={text.url}>
-                <ListItem button key={text.name}>
+               <ListItem button key={text.name}>
                   <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    {index % 2 === 0 ? (
+                     
+                        <InboxIcon />{" "}
+                    ) : (
+                      <MailIcon />
+                    )}
                   </ListItemIcon>
-                  <ListItemText primary={text.name} />
                 </ListItem>
-              </a>
-            );
+              </a>            );
           })}
         </List>
         <Divider />
