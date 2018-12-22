@@ -4,9 +4,14 @@ import Button from "@material-ui/core/Button";
 import { Redirect } from "react-router-dom";
 import fire from "../Fire";
 import { connect } from "react-redux";
+import firebase from "firebase";
 import "../A/Style.css";
 import FF from "../assets/MyImages/beats.png";
 import UserContainer from "../State/UserContainer";
+import Grid from "@material-ui/core/Grid";
+import logo from "../Icons/logo.svg";
+
+import Link from "react-router-dom/Link";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -48,194 +53,90 @@ class Login extends Component {
   };
 
   onChangePass = e => {
+    console.log(e.target.value);
+
     this.setState({
       password: e.target.value
     });
   };
   onLogin = e => {
+    fire.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     fire
       .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password);
-    this.props.onTodoClick(fire.auth().currentUser.uid);
 
-    this.setState({ logged: true });
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(function() {
+        console.log("A");
+      });
   };
 
   render() {
     return (
-      <div className="main-wrapper">
-        {/* ============================================================== */}
-        {/* Preloader - style you can find in spinners.css */}
-        {/* ============================================================== */}
-        <div className="preloader" style={{ display: "none" }}>
-          <div className="lds-ripple">
-            <div className="lds-pos" />
-            <div className="lds-pos" />
-          </div>
-        </div>
-        {/* ============================================================== */}
-        {/* Preloader - style you can find in spinners.css */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* Login box.scss */}
-        {/* ============================================================== */}
-        <div
-          className="auth-wrapper d-flex no-block justify-content-center align-items-center"
+      <Grid
+        container
+        style={{ backgroundColor: "white", zIndex: 2, height: 800 }}
+        justify="center"
+      >
+        <Grid
+          className="card card-hover"
+          item
+          md={4}
+          xs={12}
           style={{
-            background:
-              "url(../../assets/images/big/auth-bg.jpg) no-repeat center center"
+            backgroundColor: "white",
+            zIndex: 4,
+            height: 500,
+            margin: 40
           }}
         >
-          <div className="auth-box">
-            <div id="loginform">
-              <div className="logo">
-                <span className="db">
-                  <img style={{ width: 50, height: 50 }} src={FF} alt="logo" />
-                </span>
-                <h5 className="font-medium m-b-20">Sign In to Admin</h5>
-              </div>
-              {/* Form */}
-              <div className="row">
-                <div className="col-12">
-                  <form
-                    className="form-horizontal m-t-20"
-                    id="loginform"
-                    action="index.html"
-                  >
-                    <div className="input-group mb-3">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text" id="basic-addon1">
-                          <i className="ti-user" />
-                        </span>
-                      </div>
-                      <input
-                        type="text"
-                        onChange={this.onChangeEmail}
-                        className="form-control form-control-lg"
-                        placeholder="Username"
-                        aria-label="Username"
-                        aria-describedby="basic-addon1"
-                      />
-                    </div>
-                    <div className="input-group mb-3">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text" id="basic-addon2">
-                          <i className="ti-pencil" />
-                        </span>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control form-control-lg"
-                        placeholder="Password"
-                        aria-label="Password"
-                        onChange={this.onChangePass}
-                        aria-describedby="basic-addon1"
-                      />
-                    </div>
-                    <div className="form-group row">
-                      <div className="col-md-12">
-                        <div className="custom-control custom-checkbox">
-                          <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="customCheck1"
-                          />
+          <div>
+            <img style={{ width: 50, height: 50 }} src={logo} />
+            <h3>
+              <b>LineUp</b>
+            </h3>
 
-                          <a
-                            href="javascript:void(0)"
-                            id="to-recover"
-                            className="text-dark float-right"
-                          >
-                            <i className="fa fa-lock m-r-5" /> Forgot pwd?
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="form-group text-center">
-                      <div className="col-xs-12 p-b-20">
-                        <button
-                          onClick={this.onLogin}
-                          className="btn btn-block btn-lg btn-info"
-                          type="submit"
-                        >
-                          Log In
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="form-group m-b-0 m-t-10">
-                      <div className="col-sm-12 text-center">
-                        Don't have an account?{" "}
-                        <a
-                          href="authentication-register1.html"
-                          className="text-info m-l-5"
-                        >
-                          <b>Sign Up</b>
-                        </a>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
+            <div style={{ textAlign: "left", marginLeft: 20 }}>
+              <h3>Login</h3>
             </div>
-            <div id="recoverform">
-              <div className="logo">
-                <span className="db">
-                  <img src="../../assets/images/logo-icon.png" alt="logo" />
-                </span>
-                <h5 className="font-medium m-b-20">Recover Password</h5>
-                <span>
-                  Enter your Email and instructions will be sent to you!
-                </span>
-              </div>
-              <div className="row m-t-20">
-                {/* Form */}
-                <form className="col-12" action="index.html">
-                  {/* email */}
-                  <div className="form-group row">
-                    <div className="col-12">
-                      <input
-                        className="form-control form-control-lg"
-                        type="email"
-                        required
-                        placeholder="Username"
-                      />
-                    </div>
-                  </div>
-                  {/* pwd */}
-                  <div className="row m-t-20">
-                    <div className="col-12">
-                      <button
-                        className="btn btn-block btn-lg btn-danger"
-                        type="submit"
-                        name="action"
-                      >
-                        Reset
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+            <TextField
+              style={{ width: "60%" }}
+              id="outlined-name"
+              label="Email"
+              margin="normal"
+              variant="outlined"
+              onChange={this.onChangeEmail}
+            />
+            <TextField
+              style={{ width: "60%" }}
+              id="outlined-name"
+              label="Password"
+              margin="normal"
+              variant="outlined"
+              onChange={this.onChangePass}
+            />
           </div>
-        </div>
-        {/* ============================================================== */}
-        {/* Login box.scss */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* Page wrapper scss in scafholding.scss */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* Page wrapper scss in scafholding.scss */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* Right Sidebar */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* Right Sidebar */}
-        {/* ============================================================== */}{" "}
-        {this.state.logged ? <Redirect to="/dashboard" /> : null}
-      </div>
+
+          <div>
+            <Button
+              onClick={this.onLogin}
+              variant="contained"
+              color="secondary"
+              style={{ width: "60%", marginTop: 20 }}
+            >
+              LogIn
+            </Button>
+
+            {this.state.logged ? <Redirect to="/dashboard" /> : null}
+          </div>
+
+          <div style={{ textAlign: "right", marginTop: 30, marginRight: 30 }}>
+            {" "}
+            <Link style={{ color: "black" }} to="/signup">
+              <h5>Create Account ?</h5>
+            </Link>
+          </div>
+        </Grid>
+      </Grid>
     );
   }
 }

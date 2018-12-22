@@ -40,10 +40,10 @@ class ProfilePage extends Component {
             name="avatar"
             randomizeFilename
             storageRef={firebase.storage().ref("images")}
-            onUploadStart={this.handleUploadStart}
-            onUploadError={this.handleUploadError}
-            onUploadSuccess={this.handleUploadSuccess}
-            onProgress={this.handleProgress}
+            onUploadStart={this.handleUploadStart.bind(this)}
+            onUploadError={this.handleUploadError.bind(this)}
+            onUploadSuccess={this.handleUploadSuccess.bind(this)}
+            onProgress={this.handleProgress.bind(this)}
           />
         </div>
       </div>

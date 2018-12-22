@@ -117,9 +117,7 @@ class FinalChat extends React.Component {
   componentDidMount() {}
 
   CHeck = () => {
-    console.log(
-      "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSsss"
-    );
+
     fire.auth().onAuthStateChanged(user => {
       if (user) {
         fire
@@ -136,7 +134,7 @@ class FinalChat extends React.Component {
     });
   };
   // hi = () => {
-  //   console.log("ATHARVASSSSSSSSATAHRVASSSATHARVASSSATHAR$AVQA");
+  //   console.log ("ATHARVASSSSSSSSATAHRVASSSATHARVASSSATHAR$AVQA");
   //   fire
   //     .database()
   //     .ref()
@@ -145,7 +143,7 @@ class FinalChat extends React.Component {
   //     .on("child_added", f => {
   //       this.setState({ avu: f.val() });
 
-  //       console.log(this.state);
+  //       console.log (this.state);
   //     });
   // };
   handleDrawerToggle = () => {
@@ -257,9 +255,7 @@ class FinalChat extends React.Component {
                 ModalProps={{
                   keepMounted: true // Better open performance on mobile.
                 }}
-              >
-                {drawer}
-              </Drawer>
+              />
             </Hidden>
             <AppBar position="fixed" className={classes.appBar}>
               <Toolbar>
@@ -319,8 +315,7 @@ class FinalChat extends React.Component {
               </div>{" "}
             </main>
           </div>
-        </div>
-        {console.log(this.state.lodded)}
+        </div>{" "}
       </div>
     );
   }

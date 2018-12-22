@@ -16,7 +16,7 @@ function TextButtons(props) {
   const { classes } = props;
   return (
     <div>
-      {console.log(classes.button)}
+      {console.log (classes.button)}
       <Button className={classes.button}>Default</Button>
       <Button color="primary" className={classes.button}>
         Primary

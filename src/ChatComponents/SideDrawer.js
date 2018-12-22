@@ -23,7 +23,7 @@ import Grid from "@material-ui/core/Grid";
 import { Switch } from "react-router";
 import { Route } from "react-router-dom";
 import Badge from "@material-ui/core/Badge";
-
+import Noteicon from "../A/note.png";
 import "./Chat.css";
 import NoteShow from "../NotesComponents/NoteShow";
 import ProfilesShow from "./ProfilesShow";
@@ -105,17 +105,13 @@ class SideDrawer extends React.Component {
           ].map((text, index) => {
             return (
               <a href={text.url}>
-               <ListItem button key={text.name}>
+                <ListItem button key={text.name}>
                   <ListItemIcon>
-                    {index % 2 === 0 ? (
-                     
-                        <InboxIcon />{" "}
-                    ) : (
-                      <MailIcon />
-                    )}
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                   </ListItemIcon>
                 </ListItem>
-              </a>            );
+              </a>
+            );
           })}
         </List>
         <Divider />
@@ -171,7 +167,7 @@ class SideDrawer extends React.Component {
             >
               {drawer}
             </Drawer>{" "}
-            {console.log(classes.button)}
+            {console.log (classes.button)}
           </Hidden>
         </nav>
         <div className="ll">
@@ -182,9 +178,7 @@ class SideDrawer extends React.Component {
                   <Switch>
                     <Route exact path="/dashboard/home" component={ChatShow} />
                     <Route path="/dashboard/note" component={NoteShow} />
-                    <Route path="/dashboard/todo" component={TodoShow} />
-                    <Route path="/dashboard/poll" component={PolShow} />
-                  </Switch>
+                    <Route path="/dashboard/todo" component={TodoShow} />                  </Switch>
                 </div>
               </Grid>
               <Grid item xs={3}>

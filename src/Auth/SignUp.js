@@ -32,7 +32,7 @@
 //   state = { logged: false, url: "/" };
 //   componentDidMount() {
 //     fire.auth().onAuthStateChanged(user => {
-//       console.log("User signed in: ", JSON.stringify(user));
+//       console.log ("User signed in: ", JSON.stringify(user));
 //       var h = false;
 //       if (user) {
 //         h = true;
@@ -51,7 +51,7 @@
 //     return (
 //       <div>
 //         {this.U}
-//         {console.log(this.state)}
+//         {console.log (this.state)}
 
 //         <Redirect push to="/somewhere/else" />
 

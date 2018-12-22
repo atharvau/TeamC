@@ -7,7 +7,8 @@ import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Avatar from "@material-ui/core/Avatar";
+
+import Avatar from "react-avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import red from "@material-ui/core/colors/red";
@@ -17,9 +18,11 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import CardMedia from "@material-ui/core/CardMedia";
 import "../A/Style.css";
+import FF from "../assets/MyImages/beats.png";
+
 import Grid from "@material-ui/core/Grid";
 import "./Chat.css";
-import { Paper } from "@material-ui/core";
+import { Paper, Checkbox } from "@material-ui/core";
 
 const styles = theme => ({
   card: {
@@ -69,30 +72,92 @@ class RecipeReviewCard extends React.Component {
     const { classes } = this.props;
 
     return (
-      <li className="chat-item">
-        <div className="container">
-          <Grid alignContent="flex-start" container>
-            <Grid item xs={2}>
-              <div className="chat-img">
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/workstation-de68a.appspot.com/o/eibgv7kctah62iddzywm.webp?alt=media&token=41c3c4b4-bc9c-4c62-8e9c-4971902f614d"
-                  style={{ height: 40, width: 40 }}
-                  alt="user"
-                />
+      <div>
+        {this.props.pic !== undefined ? (
+          <div
+            style={{
+              textAlign: "left",
+              fontFamily: "'Poppins', sans-serif",
+              minHeight: 100,
+              backgroundColor: "white"
+            }}
+            className="sl-item card-hover"
+          >
+            <div className="sl-left">
+              {" "}
+              <div>
+                <Avatar
+                  size="70"
+                  name={this.props.name}
+                  src={this.props.propic}
+                />{" "}
               </div>
-            </Grid>
-            <Grid item xs={10}>
-              <div className="container">
-                <h6 className="font-medium">{this.props.uid}</h6>
-                <div className="box bg-light-info">
-                  <div className="container">{this.props.msg}</div>{" "}
+            </div>
+            <div className="sl-right">
+              <div>
+                {" "}
+                <a
+                  style={{ fontSize: 17 }}
+                  href="javascript:void(0)"
+                  className="link"
+                >
+                  {this.props.username}
+                </a>{" "}
+                <span className="sl-date"> {this.props.timestamp}</span>
+                <div className="m-t-20 row">
+                  <div className="col-md-3 col-xs-12">
+                    <img
+                      src={this.props.pic}
+                      alt="user"
+                      className="img-fluid rounded"
+                    />
+                  </div>
+                  <div style={{ fontSize: 13 }} className="col-md-9 col-xs-12">
+                    <p>{this.props.msg}</p>
+                  </div>
                 </div>
               </div>
-              <div className="chat-time">{this.props.timestamp}</div>
-            </Grid>
-          </Grid>
-        </div>
-      </li>
+            </div>
+            <hr />
+          </div>
+        ) : (
+          <div
+            style={{
+              textAlign: "left",
+              fontFamily: "'Poppins', sans-serif",
+              minHeight: 100
+            }}
+            className="sl-item card-hover"
+          >
+            <div className="sl-left">
+              {" "}
+              <div>
+                <Avatar
+                  size="70"
+                  name={this.props.name}
+                  src={this.props.propic}
+                />
+              </div>
+            </div>
+            <div className="sl-right">
+              <div>
+                <a
+                  style={{ fontSize: 17 }}
+                  href="javascript:void(0)"
+                  className="link"
+                >
+                  {this.props.username}{" "}
+                </a>{" "}
+                <span className="sl-date">{this.props.timestamp} </span>
+                <p style={{ fontSize: 13 }} className="m-t-10">
+                  {this.props.msg}
+                </p>
+              </div>
+            </div>
+            <hr />
+          </div>
+        )}
+      </div>
     );
   }
 }

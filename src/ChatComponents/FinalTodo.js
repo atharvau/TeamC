@@ -167,7 +167,7 @@ class SideDrawer extends React.Component {
             >
               {drawer}
             </Drawer>{" "}
-            {console.log(classes.button)}
+            {console.log (classes.button)}
           </Hidden>
         </nav>
         <div className="ll">
